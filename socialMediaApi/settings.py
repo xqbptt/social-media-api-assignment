@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import django_heroku
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,7 @@ SECRET_KEY = '^lrem_p1l8!-2@^jg_(!o7v=k!s#nkh_*peje%a_jxlbcmfhzv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['social-media-api-reunion.herokuapp.com','localhost']
 
 
 # Application definition
@@ -75,8 +76,13 @@ WSGI_APPLICATION = 'socialMediaApi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd2v2408cv9ab24',
+        'USER':'kufeuydoacizcn',
+        'PASSWORD':'aa798d890d3ee4e51d5c042077aeefe628a052d9c8931a7d7e103ba6dda36f1d',
+        'HOST':'ec2-54-146-84-101.compute-1.amazonaws.com',
+        'PORT':'5432'
+
     }
 }
 
@@ -117,4 +123,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
